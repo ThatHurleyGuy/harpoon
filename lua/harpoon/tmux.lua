@@ -137,7 +137,7 @@ end
 
 function M.sendCommand(idx, cmd, ...)
     log.trace("tmux: sendCommand(): Window:", idx)
-    local window_handle = find_terminal(idx)
+    -- local window_handle = find_terminal(idx)
 
     if type(cmd) == "number" then
         cmd = harpoon.get_term_config().cmds[cmd]
@@ -154,7 +154,7 @@ function M.sendCommand(idx, cmd, ...)
             "tmux",
             "send-keys",
             "-t",
-            window_handle.window_id,
+            idx,
             string.format(cmd, ...),
         }, vim.loop.cwd())
 
